@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -15,10 +16,6 @@ public class AlunoController {
     @Autowired
     private AlunoServiceImpl alunoService;
 
-    @GetMapping("/teste")
-    String teste(ModelMap model){
-        return "teste";
-    }
 
     @GetMapping("/listar")
     String listarAlunos(ModelMap model){
@@ -30,5 +27,11 @@ public class AlunoController {
     String cadastrarAluno(ModelMap model){
         model.addAttribute("aluno", new Aluno());
         return "aluno/cadastro";
+    }
+
+    @PostMapping("/salvar")
+    String salvar(Aluno aluno){
+        alunoService.cadastrar(aluno);
+        return "redirect:/alunos/listar";
     }
 }

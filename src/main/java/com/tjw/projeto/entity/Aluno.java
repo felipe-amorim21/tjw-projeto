@@ -2,6 +2,7 @@ package com.tjw.projeto.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -14,7 +15,7 @@ public class Aluno {
     private String nome;
 
     @Column(name = "dataNascimento")
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     @Column(name = "cpf")
     private String Cpf;
@@ -25,7 +26,7 @@ public class Aluno {
     public Aluno() {
     }
 
-    public Aluno(String nome, Date dataNascimento, String cpf, String email) {
+    public Aluno(String nome, LocalDate dataNascimento, String cpf, String email) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.Cpf = cpf;
@@ -48,11 +49,11 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
