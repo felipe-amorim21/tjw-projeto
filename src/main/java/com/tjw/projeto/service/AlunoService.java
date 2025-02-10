@@ -1,6 +1,6 @@
-package com.tjw.projeto.Service;
+package com.tjw.projeto.service;
 
-import com.tjw.projeto.Entity.Aluno;
+import com.tjw.projeto.entity.Aluno;
 
 import java.util.List;
 

@@ -1,12 +1,14 @@
-package com.tjw.projeto.ServiceImpl;
+package com.tjw.projeto.serviceImpl;
 
-import com.tjw.projeto.Entity.Disciplina;
-import com.tjw.projeto.Repository.DisciplinaRepository;
-import com.tjw.projeto.Service.DisciplinaService;
+import com.tjw.projeto.entity.Disciplina;
+import com.tjw.projeto.repository.DisciplinaRepository;
+import com.tjw.projeto.service.DisciplinaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DisciplinaServiceImpl implements DisciplinaService {
     @Autowired
     DisciplinaRepository disciplinaRepository;

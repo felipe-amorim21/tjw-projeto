@@ -1,4 +1,4 @@
-package com.tjw.projeto.Entity;
+package com.tjw.projeto.entity;
 
 import jakarta.persistence.*;
 

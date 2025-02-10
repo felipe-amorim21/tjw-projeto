@@ -1,12 +1,14 @@
-package com.tjw.projeto.ServiceImpl;
+package com.tjw.projeto.serviceImpl;
 
-import com.tjw.projeto.Entity.Semestre;
-import com.tjw.projeto.Repository.SemestreRepository;
-import com.tjw.projeto.Service.SemestreService;
+import com.tjw.projeto.entity.Semestre;
+import com.tjw.projeto.repository.SemestreRepository;
+import com.tjw.projeto.service.SemestreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SemestreServiceImpl implements SemestreService {
 
     @Autowired

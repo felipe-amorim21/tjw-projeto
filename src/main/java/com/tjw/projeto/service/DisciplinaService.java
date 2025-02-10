@@ -1,6 +1,6 @@
-package com.tjw.projeto.Service;
+package com.tjw.projeto.service;
 
-import com.tjw.projeto.Entity.Disciplina;
+import com.tjw.projeto.entity.Disciplina;
 
 import java.util.List;
 

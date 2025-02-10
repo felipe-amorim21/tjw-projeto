@@ -1,12 +1,14 @@
-package com.tjw.projeto.ServiceImpl;
+package com.tjw.projeto.serviceImpl;
 
-import com.tjw.projeto.Entity.Aluno;
-import com.tjw.projeto.Repository.AlunoRepository;
-import com.tjw.projeto.Service.AlunoService;
+import com.tjw.projeto.entity.Aluno;
+import com.tjw.projeto.repository.AlunoRepository;
+import com.tjw.projeto.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AlunoServiceImpl implements AlunoService {
 
     @Autowired
