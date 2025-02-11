@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,6 +33,24 @@ public class AlunoController {
     @PostMapping("/salvar")
     String salvar(Aluno aluno){
         alunoService.cadastrar(aluno);
+        return "redirect:/alunos/listar";
+    }
+
+    @GetMapping("/editar/{id}")
+    String preEditar(@PathVariable("id") Long id, ModelMap model) {
+        model.addAttribute("aluno", alunoService.buscarPorId(id));
+        return "/aluno/cadastro";
+    }
+
+    @PostMapping("/editar")
+    String editar(Aluno aluno){
+        alunoService.editar(aluno);
+        return "redirect:/alunos/listar";
+    }
+
+    @GetMapping("/excluir/{id}")
+    String excluir(@PathVariable("id") Long id){
+        alunoService.excluirPorId(id);
         return "redirect:/alunos/listar";
     }
 }
