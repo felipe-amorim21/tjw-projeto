@@ -41,6 +41,6 @@ public class SemestreServiceImpl implements SemestreService {
 
     @Override
     public List<Semestre> buscarTodos() {
-        return List.of();
+        return semestreRepository.findAll();
     }
 }
