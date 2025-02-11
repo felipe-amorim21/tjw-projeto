@@ -88,8 +88,8 @@
                         <th>#</th>
                         <th>Nome</th>
                         <th>E-mail</th>
-                        <th>Matrícula</th>
-                        <th>Ação</th>
+                        <th>CPF</th>
+                        <th>Data de Nascimento</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -100,12 +100,12 @@
                         <td th:text="${aluno.cpf}">2024.1-cc-1234</td>
                         <td th:text="${aluno.dataNascimento}">2024.1-cc-1234</td>
                         <td colspan="2">
-                            <a class="btn btn-info btn-sm" th:href="@{/alunos/editar/{id} (id=${aluno.id})}" role="button">
+                            <a class="btn btn-warning btn-sm" th:href="@{/alunos/editar/{id} (id=${aluno.id})}" role="button">
                                 <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
                             </a>
 
                             <a class="btn btn-danger btn-sm" th:href="@{/alunos/excluir/{id} (id=${aluno.id})} " role="button">
-                                <span class="oi oi-brush" title="Excluir" aria-hidden="true"></span>
+                                <span class="oi oi-trash" title="Excluir" aria-hidden="true"></span>
                             </a>
 
 

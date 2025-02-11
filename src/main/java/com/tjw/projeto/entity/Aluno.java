@@ -3,7 +3,6 @@ package com.tjw.projeto.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Aluno {
@@ -18,7 +17,7 @@ public class Aluno {
     private LocalDate dataNascimento;
 
     @Column(name = "cpf")
-    private String Cpf;
+    private String cpf;
 
     @Column(name = "email")
     private String email;
@@ -29,7 +28,7 @@ public class Aluno {
     public Aluno(String nome, LocalDate dataNascimento, String cpf, String email) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
-        this.Cpf = cpf;
+        this.cpf = cpf;
         this.email = email;
     }
 
@@ -66,10 +65,10 @@ public class Aluno {
     }
 
     public String getCpf() {
-        return Cpf;
+        return cpf;
     }
 
     public void setCpf(String cpf) {
-        Cpf = cpf;
+        this.cpf = cpf;
     }
 }
