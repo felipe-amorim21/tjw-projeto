@@ -2,13 +2,12 @@ package com.tjw.projeto.Controller;
 
 import com.tjw.projeto.entity.Aluno;
 import com.tjw.projeto.serviceImpl.AlunoServiceImpl;
+import com.tjw.projeto.serviceImpl.AlunoTurmaServiceImpl;
+import com.tjw.projeto.serviceImpl.TurmaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/alunos")
@@ -16,6 +15,12 @@ public class AlunoController {
 
     @Autowired
     private AlunoServiceImpl alunoService;
+
+    @Autowired
+    private TurmaServiceImpl turmaService;
+
+    @Autowired
+    private AlunoTurmaServiceImpl alunoTurmaService;
 
 
     @GetMapping("/listar")
@@ -52,5 +57,25 @@ public class AlunoController {
     String excluir(@PathVariable("id") Long id){
         alunoService.excluirPorId(id);
         return "redirect:/alunos/listar";
+    }
+
+    @GetMapping("/associar")
+    public String exibirFormularioAssociacao(ModelMap model) {
+
+        model.addAttribute("alunos", alunoService.buscarTodos());
+        model.addAttribute("turmas", turmaService.buscarTodos());
+
+        return "aluno/associarAlunoTurma";
+    }
+
+    @PostMapping("/associar")
+    public String associarAlunoATurma(@RequestParam Long alunoId, @RequestParam Long turmaId, ModelMap model) {
+        alunoTurmaService.associarAlunoATurma(alunoId, turmaId);
+
+        model.addAttribute("alunos", alunoService.buscarTodos());
+        model.addAttribute("turmas", turmaService.buscarTodos());
+        model.addAttribute("mensagem", "Aluno associado à turma com sucesso!");
+
+        return "aluno/associarAlunoTurma";
     }
 }

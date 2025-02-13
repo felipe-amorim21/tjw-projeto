@@ -2,6 +2,8 @@ package com.tjw.projeto.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Turma {
 
@@ -18,6 +20,9 @@ public class Turma {
     private Disciplina disciplina;
 
     private String professor;
+
+    @ManyToMany(mappedBy = "turmas")
+    private List<Aluno> alunos;
 
     public Turma() {
     }

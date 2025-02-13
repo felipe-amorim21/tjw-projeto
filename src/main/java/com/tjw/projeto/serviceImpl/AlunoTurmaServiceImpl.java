@@ -1,0 +1,28 @@
+package com.tjw.projeto.serviceImpl;
+
+import com.tjw.projeto.entity.Aluno;
+import com.tjw.projeto.entity.Turma;
+import com.tjw.projeto.repository.AlunoRepository;
+import com.tjw.projeto.repository.TurmaRepository;
+import com.tjw.projeto.service.AlunoTurmaService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AlunoTurmaServiceImpl implements AlunoTurmaService {
+
+    @Autowired
+    AlunoRepository alunoRepository;
+
+    @Autowired
+    TurmaRepository turmaRepository;
+
+    @Override
+    public void associarAlunoATurma(Long alunoId, Long turmaId) {
+        Aluno aluno = alunoRepository.findById(alunoId).orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
+        Turma turma = turmaRepository.findById(turmaId).orElseThrow(() -> new RuntimeException("Turma não encontrada"));
+
+        aluno.getTurmas().add(turma);
+        alunoRepository.save(aluno);
+    }
+}

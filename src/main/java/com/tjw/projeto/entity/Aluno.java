@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+import java.util.List;
+
 @Entity
 public class Aluno {
     @Id
@@ -21,6 +23,13 @@ public class Aluno {
 
     @Column(name = "email")
     private String email;
+
+    @ManyToMany
+    @JoinTable(
+            name = "aluno_turma",
+            joinColumns = @JoinColumn(name = "aluno_id"),
+            inverseJoinColumns = @JoinColumn(name = "turma_id"))
+    private List<Turma> turmas;
 
     public Aluno() {
     }
@@ -71,4 +80,9 @@ public class Aluno {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    public List<Turma> getTurmas() {
+        return turmas;
+    }
+
 }

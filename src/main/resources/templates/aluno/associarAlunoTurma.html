@@ -2,37 +2,42 @@
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>TJW 2024.2</title>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-  <link rel="icon" href="/image/favicon.png" />
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <link rel="icon" href="/image/favicon.png"/>
 
   <!-- Bootstrap core CSS -->
-  <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
+  <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet"/>
 
   <!-- Custom styles for this template -->
-  <link href="/css/style.css" rel="stylesheet" />
+  <link href="/css/style.css" rel="stylesheet"/>
 </head>
-
 <body>
 <header>
-  <nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <button type="button" class="btn btn-dark navbar-toggle pull-left">
+        <button type="button" class="btn btn-dark navbar-toggler">
           <i class="oi oi-menu"></i>
         </button>
-        <a class="navbar-brand " href="#">TJW 2024.2</a>
+        <a class="navbar-brand" href="#">TJW 2024.2</a>
+        <a th:href="@{/logout}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          Logout
+        </a>
+
+        <form id="logout-form" th:action="@{/logout}" method="POST" style="display: none;">
+          <input type="hidden" name="_csrf" value="${_csrf.token}">
+        </form>
+
+
       </div>
     </div>
   </nav>
 </header>
 
 <div class="layout-main">
-
   <aside>
     <nav class="sidebar sidebar-open">
       <ul class="nav nav-pills">
@@ -83,7 +88,6 @@
         <div class="collapse" id="turmasMenu">
           <li class="nav-item"><a class="nav-link" href="/turmas/cadastrar"><i class="oi oi-plus"></i> Cadastrar</a></li>
           <li class="nav-item"><a class="nav-link" href="/turmas/listar"><i class="oi oi-spreadsheet"></i> Listar</a></li>
-          <li class="nav-item"><a class="nav-link" href="/alunos/associar"><i class="oi oi-spreadsheet"></i>Associar Aluno com Turma</a></li>
         </div>
       </ul>
     </nav>
@@ -91,41 +95,82 @@
 
   <section class="layout-content">
 
+    <div class="container mt-5">
+      <h1>Associar Aluno à Turma</h1>
 
+      <div th:if="${mensagem}" class="alert alert-success">
+        <p th:text="${mensagem}"></p>
+      </div>
 
-    <div class="container">
+      <form th:action="@{/alunos/associar}" method="post">
+        <div class="mb-3">
+          <label for="aluno" class="form-label">Selecione o Aluno:</label>
+          <select id="aluno" name="alunoId" class="form-select" required>
+            <option th:each="aluno : ${alunos}"
+                    th:value="${aluno.id}"
+                    th:text="${aluno.nome}"></option>
+          </select>
+        </div>
 
+        <div class="mb-3">
+          <label for="turma" class="form-label">Selecione a Turma:</label>
+          <select id="turma" name="turmaId" class="form-select" required>
+            <option th:each="turma : ${turmas}"
+                    th:value="${turma.id}">
+              <span th:text="'Semestre: ' + ${turma.semestre.ano} + ' - ' + ${turma.semestre.numeroSemestre} + 'º Semestre' + ' - Disciplina: ' + ${turma.disciplina.nome} + ' - Professor: ' + ${turma.professor}"></span>
+            </option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Associar</button>
+      </form>
+
+      <hr>
+
+      <h3>Alunos Cadastrados</h3>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Turmas</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="aluno : ${alunos}">
+          <td th:text="${aluno.nome}"></td>
+          <td>
+            <ul>
+              <li th:each="turma : ${aluno.turmas}"
+                  th:text="'Semestre: ' + ${turma.semestre.ano} + ' - ' + ${turma.semestre.numeroSemestre} + 'º Semestre' + ', Disciplina: ' + ${turma.disciplina.nome} + ', Professor: ' + ${turma.professor}"></li>
+            </ul>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
 
-  </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
 
+
+  </section>
 </div>
+
 <footer class="layout-footer">
-  <div class="container">
-    <span class="footer-copy"></span>
-  </div>
+  <div class="container"></div>
 </footer>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+<!-- Scripts -->
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-
+<script>
   $(function () {
       $('[data-toggle="popover"]').popover();
   });
-
-  $(document).ready(function () {
-      $(".navbar-toggle").click(function () {
-          $(".sidebar").toggleClass("sidebar-open");
-      })
+  $(".navbar-toggler").click(function () {
+      $(".sidebar").toggleClass("sidebar-open");
   });
-
 </script>
 </body>
-
 </html>
