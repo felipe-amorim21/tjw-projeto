@@ -41,25 +41,54 @@
     <aside>
         <nav class="sidebar sidebar-open">
             <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link" href="/"> <i class="oi oi-home"></i> <span>Home</span></a></li>
+                <li class="nav-item"><a class="nav-link " href="/"> <i class="oi oi-home"></i> <span>Home</span>
+                </a></li>
             </ul>
 
             <ul class="nav nav-pills">
-                <li class="nav-item"><span class="nav-link active">Alunos</span></li>
-                <li class="nav-item"><a class="nav-link" href="/alunos/cadastrar"><i class="oi oi-plus"></i><span>Cadastrar</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="/alunos/listar"><i class="oi oi-spreadsheet"></i><span>Listar</span></a></li>
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="collapse" href="#alunosMenu" role="button" aria-expanded="false" aria-controls="alunosMenu">
+                        Alunos
+                    </a>
+                </li>
+                <div class="collapse" id="alunosMenu">
+                    <li class="nav-item"><a class="nav-link" href="/alunos/cadastrar"><i class="oi oi-plus"></i> Cadastrar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/alunos/listar"><i class="oi oi-spreadsheet"></i> Listar</a></li>
+                </div>
+            </ul>
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="collapse" href="#disciplinasMenu" role="button" aria-expanded="false" aria-controls="disciplinasMenu">
+                        Disciplinas
+                    </a>
+                </li>
+                <div class="collapse" id="disciplinasMenu">
+                    <li class="nav-item"><a class="nav-link" href="/disciplinas/cadastrar"><i class="oi oi-plus"></i> Cadastrar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/disciplinas/listar"><i class="oi oi-spreadsheet"></i> Listar</a></li>
+                </div>
             </ul>
 
             <ul class="nav nav-pills">
-                <li class="nav-item"><span class="nav-link active">Disciplinas</span></li>
-                <li class="nav-item"><a class="nav-link" href="/disciplinas/cadastrar"><i class="oi oi-plus"></i><span>Cadastrar</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="/disciplinas/listar"><i class="oi oi-spreadsheet"></i><span>Listar</span></a></li>
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="collapse" href="#semestresMenu" role="button" aria-expanded="false" aria-controls="semestresMenu">
+                        Semestres
+                    </a>
+                </li>
+                <div class="collapse" id="semestresMenu">
+                    <li class="nav-item"><a class="nav-link" href="/semestres/cadastrar"><i class="oi oi-plus"></i> Cadastrar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/semestres/listar"><i class="oi oi-spreadsheet"></i> Listar</a></li>
+                </div>
             </ul>
-
             <ul class="nav nav-pills">
-                <li class="nav-item"><span class="nav-link active">Semestres</span></li>
-                <li class="nav-item"><a class="nav-link" href="/semestres/cadastrar"><i class="oi oi-plus"></i><span>Cadastrar</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="/semestres/listar"><i class="oi oi-spreadsheet"></i><span>Listar</span></a></li>
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="collapse" href="#turmasMenu" role="button" aria-expanded="false" aria-controls="turmasMenu">
+                        Turmas
+                    </a>
+                </li>
+                <div class="collapse" id="turmasMenu">
+                    <li class="nav-item"><a class="nav-link" href="/turmas/cadastrar"><i class="oi oi-plus"></i> Cadastrar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/turmas/listar"><i class="oi oi-spreadsheet"></i> Listar</a></li>
+                </div>
             </ul>
         </nav>
     </aside>
