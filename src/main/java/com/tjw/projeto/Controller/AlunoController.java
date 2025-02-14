@@ -59,23 +59,5 @@ public class AlunoController {
         return "redirect:/alunos/listar";
     }
 
-    @GetMapping("/associar")
-    public String exibirFormularioAssociacao(ModelMap model) {
 
-        model.addAttribute("alunos", alunoService.buscarTodos());
-        model.addAttribute("turmas", turmaService.buscarTodos());
-
-        return "aluno/associarAlunoTurma";
-    }
-
-    @PostMapping("/associar")
-    public String associarAlunoATurma(@RequestParam Long alunoId, @RequestParam Long turmaId, ModelMap model) {
-        alunoTurmaService.associarAlunoATurma(alunoId, turmaId);
-
-        model.addAttribute("alunos", alunoService.buscarTodos());
-        model.addAttribute("turmas", turmaService.buscarTodos());
-        model.addAttribute("mensagem", "Aluno associado à turma com sucesso!");
-
-        return "aluno/associarAlunoTurma";
-    }
 }

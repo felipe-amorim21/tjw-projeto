@@ -88,6 +88,7 @@
         <div class="collapse" id="turmasMenu">
           <li class="nav-item"><a class="nav-link" href="/turmas/cadastrar"><i class="oi oi-plus"></i> Cadastrar</a></li>
           <li class="nav-item"><a class="nav-link" href="/turmas/listar"><i class="oi oi-spreadsheet"></i> Listar</a></li>
+          <li class="nav-item"><a class="nav-link" href="/alunos/associar"><i class="oi oi-spreadsheet"></i>Associar Aluno com Turma</a></li>
         </div>
       </ul>
     </nav>
@@ -102,7 +103,7 @@
         <p th:text="${mensagem}"></p>
       </div>
 
-      <form th:action="@{/alunos/associar}" method="post">
+      <form th:action="@{/alunoturmas/associar}" method="post">
         <div class="mb-3">
           <label for="aluno" class="form-label">Selecione o Aluno:</label>
           <select id="aluno" name="alunoId" class="form-select" required>
@@ -127,26 +128,7 @@
 
       <hr>
 
-      <h3>Alunos Cadastrados</h3>
-      <table class="table">
-        <thead>
-        <tr>
-          <th scope="col">Nome</th>
-          <th scope="col">Turmas</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="aluno : ${alunos}">
-          <td th:text="${aluno.nome}"></td>
-          <td>
-            <ul>
-              <li th:each="turma : ${aluno.turmas}"
-                  th:text="'Semestre: ' + ${turma.semestre.ano} + ' - ' + ${turma.semestre.numeroSemestre} + 'º Semestre' + ', Disciplina: ' + ${turma.disciplina.nome} + ', Professor: ' + ${turma.professor}"></li>
-            </ul>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>

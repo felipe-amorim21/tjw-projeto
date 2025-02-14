@@ -43,4 +43,5 @@ public class AlunoServiceImpl implements AlunoService {
     public List<Aluno> buscarTodos() {
         return alunoRepository.findAll();
     }
+
 }

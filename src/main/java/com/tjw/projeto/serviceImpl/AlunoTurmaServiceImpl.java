@@ -1,5 +1,6 @@
 package com.tjw.projeto.serviceImpl;
 
+import java.util.List;
 import com.tjw.projeto.entity.Aluno;
 import com.tjw.projeto.entity.Turma;
 import com.tjw.projeto.repository.AlunoRepository;
@@ -24,5 +25,14 @@ public class AlunoTurmaServiceImpl implements AlunoTurmaService {
 
         aluno.getTurmas().add(turma);
         alunoRepository.save(aluno);
+    }
+
+    @Override
+    public List<Aluno> buscarAlunosComTurmas() {
+        return alunoRepository.findAlunoComTurmas();
+    }
+
+    public List<Aluno> buscarPorNomeComTurmas(String nome){
+        return alunoRepository.findByNomeContainingIgnoreCaseComTurmas(nome);
     }
 }

@@ -1,11 +1,11 @@
 package com.tjw.projeto.service;
 
-import com.tjw.projeto.repository.AlunoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.tjw.projeto.entity.Aluno;
+import java.util.List;
 
 public interface AlunoTurmaService {
 
-    public void associarAlunoATurma(Long alunoId, Long turmaId);
+    void associarAlunoATurma(Long alunoId, Long turmaId);
 
+    List<Aluno> buscarAlunosComTurmas();
 }
