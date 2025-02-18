@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Relatório de Alunos por Turma</title>
+</head>
+<body>
+    <h2>Relatório de Todas as Turmas</h2>
+
+    <div th:each="turma : ${turmas}">
+        <h3>Disciplina: <span th:text="${turma.disciplina.nome}"></span></h3>
+        <p><strong>Professor:</strong> <span th:text="${turma.professor}"></span></p>
+        <p><strong>Semestre:</strong> <span th:text="${turma.semestre.nome}"></span></p>
+
+        <h4>Alunos Matriculados</h4>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="aluno : ${turma.alunos}">
+                    <td th:text="${aluno.id}"></td>
+                    <td th:text="${aluno.nome}"></td>
+                    <td th:text="${aluno.cpf}"></td>
+                    <td th:text="${aluno.email}"></td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(turma.alunos)}">
+                    <td colspan="4">Nenhum aluno matriculado</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr/>
+    </div>
+
+    <a href="/">Voltar</a>
+</body>
+</html>
