@@ -26,6 +26,9 @@
           <i class="oi oi-menu"></i>
         </button>
         <a class="navbar-brand " href="#">TJW 2024.2</a>
+        <a th:href="@{/logout}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          Logout
+        </a>
       </div>
     </div>
   </nav>
@@ -83,7 +86,6 @@
         <div class="collapse" id="turmasMenu">
           <li class="nav-item"><a class="nav-link" href="/turmas/cadastrar"><i class="oi oi-plus"></i> Cadastrar</a></li>
           <li class="nav-item"><a class="nav-link" href="/turmas/listar"><i class="oi oi-spreadsheet"></i> Listar</a></li>
-          <li class="nav-item"><a class="nav-link" href="/alunos/associar"><i class="oi oi-spreadsheet"></i>Associar Aluno com Turma</a></li>
         </div>
       </ul>
       <ul class="nav nav-pills">

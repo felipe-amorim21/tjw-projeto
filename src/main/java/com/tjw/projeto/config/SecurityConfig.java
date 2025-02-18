@@ -16,10 +16,12 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/","/css/**", "/js/**", "/image/**", "/webjars/**").permitAll()
-                        .requestMatchers("/disciplinas/listar").hasRole("USER")
+                        .requestMatchers("/disciplinas/listar").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/alunos/*", "/disciplinas/*", "/semestres/*", "/turmas/*", "alunoturmas/*").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
+                .exceptionHandling(ex -> ex
+                        .accessDeniedPage("/accessdenied"))
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout=true")
