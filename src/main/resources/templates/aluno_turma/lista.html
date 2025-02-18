@@ -143,13 +143,23 @@
                             <td th:text="${aluno.nome}"></td>
                             <td>
                                 <ul>
-                                    <li th:each="turma : ${aluno.turmas}"
-                                        th:text="'Semestre: ' + ${turma.semestre.ano} + ' - ' + ${turma.semestre.numeroSemestre} + 'º Semestre' + ', Disciplina: ' + ${turma.disciplina.nome} + ', Professor: ' + ${turma.professor}"></li>
+                                    <li th:each="turma : ${aluno.turmas}">
+                                        <span th:text="'Semestre: ' + ${turma.semestre.ano} + ' - ' + ${turma.semestre.numeroSemestre} + 'º Semestre' + ', Disciplina: ' + ${turma.disciplina.nome} + ', Professor: ' + ${turma.professor}"></span>
+                                        <a class="btn btn-warning btn-sm" th:href="@{/alunoturmas/editar/{alunoId}/{turmaId} (alunoId=${aluno.id}, turmaId=${turma.id})}" role="button">
+                                            <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm"
+                                           th:href="@{/alunoturmas/excluir/{alunoId}/{turmaId} (alunoId=${aluno.id}, turmaId=${turma.id})}"
+                                           role="button">
+                                            <span class="oi oi-trash" title="Excluir" aria-hidden="true"></span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </td>
                         </tr>
                         </tbody>
                     </table>
+
                 </table>
             </div>
         </div>

@@ -64,4 +64,12 @@ public class Turma {
     public void setProfessor(String professor) {
         this.professor = professor;
     }
+
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
 }

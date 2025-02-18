@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Associação</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="icon" href="/image/favicon.png"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">TJW 2024.2</a>
+            <a th:href="@{/logout}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Logout
+            </a>
+            <form id="logout-form" th:action="@{/logout}" method="POST" style="display: none;">
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<div class="container mt-5">
+    <h1>Editar Associação de Aluno e Turma</h1>
+
+    <div th:if="${mensagem}" class="alert alert-success">
+        <p th:text="${mensagem}"></p>
+    </div>
+
+    <form th:action="@{/alunoturmas/editar}" method="post">
+
+        <div class="mb-3">
+            <label for="aluno" class="form-label">Aluno:</label>
+            <select id="aluno" name="alunoId" class="form-select" required>
+                <option th:value="${aluno.id}" th:text="${aluno.nome}" selected></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="turmaAtual" class="form-label">Turma Atual:</label>
+            <select id="turmaAtual" name="turmaId" class="form-select" required>
+                <option th:value="${turma.id}" th:text="${turma.disciplina.nome} + ' - ' + ${turma.professor}" selected></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="turmaNova" class="form-label">Nova Turma:</label>
+            <select id="turmaNova" name="turmaNovaId" class="form-select" required>
+                <option th:each="t : ${turmas}" th:value="${t.id}" th:text="${t.disciplina.nome} + ' - ' + ${t.professor}"
+                        th:selected="${t.id == turma.id}"></option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</div>
+
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -18,6 +18,7 @@ public class AlunoTurmaServiceImpl implements AlunoTurmaService {
     @Autowired
     TurmaRepository turmaRepository;
 
+
     @Override
     public void associarAlunoATurma(Long alunoId, Long turmaId) {
         Aluno aluno = alunoRepository.findById(alunoId).orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
@@ -35,4 +36,6 @@ public class AlunoTurmaServiceImpl implements AlunoTurmaService {
     public List<Aluno> buscarPorNomeComTurmas(String nome){
         return alunoRepository.findByNomeContainingIgnoreCaseComTurmas(nome);
     }
+
+
 }
