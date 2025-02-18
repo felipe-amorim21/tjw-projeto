@@ -50,7 +50,7 @@ public class TurmaController {
         model.addAttribute("turma", turmaService.buscarPorId(id));
         model.addAttribute("semestres", semestreService.buscarTodos());
         model.addAttribute("disciplinas", disciplinaService.buscarTodos());
-        return "turmas/cadastro";
+        return "turma/cadastro";
     }
 
     @PostMapping("/editar")
