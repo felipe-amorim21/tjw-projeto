@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -17,8 +18,10 @@ public class Semestre {
 
     private int numeroSemestre;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataInicio;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataFim;
 
     public Semestre() {
