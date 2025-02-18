@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("alunoturmas")
 public class AlunoTurmaController {
@@ -36,9 +38,9 @@ public class AlunoTurmaController {
     public String associarAlunoATurma(@RequestParam Long alunoId, @RequestParam Long turmaId, ModelMap model) {
         alunoTurmaService.associarAlunoATurma(alunoId, turmaId);
 
-        model.addAttribute("mensagem", "Aluno associado à turma com sucesso!");
+        //model.addAttribute("mensagem", "Aluno associado à turma com sucesso!");
 
-        return "aluno_turma/associarAlunoTurma";
+        return "redirect:/alunoturmas/listar";
     }
 
     @GetMapping("/listar")
@@ -96,5 +98,13 @@ public class AlunoTurmaController {
         model.addAttribute("mensagem", "Associação deletado com sucesso!");
 
         return "redirect:/alunoturmas/listar";
+    }
+
+
+    @GetMapping("/relatorio/turmas")
+    public String gerarRelatorioTodasTurmas(ModelMap model) {
+        List<Turma> turmas = alunoTurmaService.obterTodasTurmasComAlunos();
+        model.addAttribute("turmas", turmas);
+        return "aluno_turma/relatorio-turma";
     }
 }

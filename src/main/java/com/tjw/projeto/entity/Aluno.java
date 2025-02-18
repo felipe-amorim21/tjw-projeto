@@ -1,6 +1,7 @@
 package com.tjw.projeto.entity;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -15,6 +16,7 @@ public class Aluno {
     @Column(name = "nome")
     private String nome;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "dataNascimento")
     private LocalDate dataNascimento;
 
